@@ -6,7 +6,8 @@ Este software foi desenvolvido para facilitar a rotina de consultórios médicos
 ## :hammer: `Funcionalidades`
 - `📋 Cadastro de Clientes`: Registra novos pacientes e inclui na base de dados;
 - `🗓️ Agendamento de consultas`: Permite marcar consultas de forma prática, associando o paciente a um horário e data disponíveis na agenda do consultório.
-- `❌ Cancelamento de consultas`: Permite o(a) recepcionista cancelar uma consulta agendada, liberando o horário para outro agendamento
+- `❌ Cancelamento de consultas`: Ao encerrar todos os ciclos que foi configurado o usuário recebe um tempo de descanso longo, onde poderá fazer outras atividades para relaxar;
+- `👀 Visualização de Horários Preenchidos`: Permite os usuários internos visualizarem os horários que já estão preenchidos
 
 ## ✔️ `Tecnologias utilizadas`
 - `Java 21`

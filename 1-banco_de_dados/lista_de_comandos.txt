@@ -1,0 +1,81 @@
+-- Comando SQL para mostrar todos os bancos de dados existentes no servidor
+show databases;
+
+-- Comando SQL para criar um banco de dados chamado "db_consultorio"
+create database db_consultorio;
+
+-- Comando SQL para selecionar o banco de dados que será utilizado
+use db_consultorio;
+
+-- Comando SQL para mostrar todas as tabelas existentes no banco de dados atual
+show tables;
+
+-- Criação da tabela "tb_medico", que armazenará os dados dos médicos cadastrados
+CREATE TABLE tb_medico (
+    id INT AUTO_INCREMENT PRIMARY KEY,                      		-- ID do médico, valor auto incremental e chave primária
+    nome VARCHAR(100) NOT NULL,                             		-- Nome do médico, campo obrigatório
+    crm VARCHAR(20) NOT NULL,                               		-- Número do CRM (registro profissional), campo obrigatório
+    id_especializacao INT,                                  		-- Campo para armazenar a chave estrangeira da especialização
+    telefone VARCHAR(15),                                   		-- Telefone do médico (formato livre)
+    whatsapp VARCHAR(15),                                   		-- Número do WhatsApp do médico (formato livre)
+    email VARCHAR(100) UNIQUE NOT NULL,                     		-- Email do médico, obrigatório e único
+    FOREIGN KEY (id_especializacao) REFERENCES especializacao(id) 	-- Chave estrangeira que referencia a tabela "especializacao"
+);
+
+-- Criação da tabela "tb_especializacao", que armazena as especializações médicas
+CREATE TABLE tb_especializacao (
+    id INT AUTO_INCREMENT PRIMARY KEY,                      -- ID da especialização, valor auto incremental e chave primária
+    nome_especializacao VARCHAR(100) NOT NULL UNIQUE        -- Nome da especialização, obrigatório e único
+);
+
+-- Inserção de dados iniciais na tabela "tb_especializacao"
+INSERT INTO tb_especializacao (nome_especializacao) 
+VALUES 
+    ('Clínico Geral'),    -- Especialização 1
+    ('Cardiologia'),      -- Especialização 2
+    ('Dermatologia'),     -- Especialização 3
+    ('Ortopedia'),        -- Especialização 4
+    ('Pediatria'),        -- Especialização 5
+    ('Ginecologia');      -- Especialização 6
+
+-- Criação da tabela "tb_paciente", que armazenará os dados dos pacientes
+CREATE TABLE tb_paciente (
+    id INT AUTO_INCREMENT PRIMARY KEY,              -- ID do paciente, chave primária com auto incremento
+    nome VARCHAR(255) NOT NULL,                     -- Nome completo do paciente, obrigatório
+    cpf VARCHAR(14) NOT NULL,                       -- CPF do paciente, obrigatório
+    rg VARCHAR(20),                                 -- RG do paciente, opcional
+    dataNasc DATE,                                  -- Data de nascimento
+    sexo CHAR(1),                                   -- Sexo (M ou F)
+    email VARCHAR(255),                             -- Email do paciente
+    telefone VARCHAR(15),                           -- Telefone para contato
+    whatsapp BOOLEAN,                               -- Indica se o paciente possui WhatsApp (1 = sim, 0 = não)
+    cep VARCHAR(10),                                -- CEP do endereço
+    estado VARCHAR(64),                             -- Estado (UF)
+    cidade VARCHAR(255),                            -- Cidade
+    bairro VARCHAR(255),                            -- Bairro
+    rua VARCHAR(255),                               -- Nome da rua
+    numero VARCHAR(10),                             -- Número da residência
+    complemento VARCHAR(255)                        -- Complemento do endereço (ex: apto, bloco, etc.)
+);
+
+-- Criação da tabela "tb_usuario", que armazenará os dados de login dos usuários do sistema
+CREATE TABLE tb_usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,                    -- ID do usuário, chave primária
+    username VARCHAR(255) NOT NULL UNIQUE,                -- Nome de usuário (ou e-mail), obrigatório e único
+    senha VARCHAR(255) NOT NULL,                          -- Senha do usuário, obrigatória
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,        -- Data de criação do cadastro, com valor padrão atual
+    status ENUM('ativo', 'inativo') DEFAULT 'ativo'       -- Status da conta do usuário, padrão "ativo"
+);
+
+-- Inserção de um usuário administrador com login e senha padrão
+INSERT INTO tb_usuario (username, senha) 
+VALUES ('admin', 'admin');
+
+-- Comando SQL para listar todos os registros da tabela "tb_especializacao"
+select * from tb_especializacao;
+
+-- Comando SQL para listar todos os registros da tabela "tb_paciente"
+select * from tb_paciente;
+
+-- Comando SQL para listar todos os registros da tabela "tb_usuario"
+select * from tb_usuario;
