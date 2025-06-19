@@ -1,6 +1,4 @@
-import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,7 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
@@ -49,40 +46,7 @@ public class JanelaPrincipal extends JFrame {
 		
 		//Inicio da barra de menu.
 		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-			JMenu mnGrupoCadastro = new JMenu("Cadastro");
-			menuBar.add(mnGrupoCadastro);
-				JMenuItem mnItemPaciente = new JMenuItem("Paciente");
-				mnGrupoCadastro.add(mnItemPaciente);	
-				
-				JMenuItem mnItemMedico = new JMenuItem("Médico");
-				mnGrupoCadastro.add(mnItemMedico);		
-				
-				JSeparator separator = new JSeparator();
-				mnGrupoCadastro.add(separator);
-				JMenuItem mnItemEspecialidade = new JMenuItem("Especialidade");
-				mnGrupoCadastro.add(mnItemEspecialidade);
-			
-			JMenu mnGrupoAgenda = new JMenu("Agenda");
-			menuBar.add(mnGrupoAgenda);
-				JMenuItem mnItemNovaConsulta = new JMenuItem("Nova Consulta");
-				mnGrupoAgenda.add(mnItemNovaConsulta);		
-				
-				JSeparator separator_2 = new JSeparator();
-				mnGrupoAgenda.add(separator_2);
-				JMenuItem mnItemVisualizarAgenda = new JMenuItem("Visualizar Agenda");
-				mnGrupoAgenda.add(mnItemVisualizarAgenda);
-			
-			JMenu mnGrupoRelatorios = new JMenu("Relatórios");
-			menuBar.add(mnGrupoRelatorios);
-				JMenuItem mnItemConsultasPorPerodo = new JMenuItem("Consultas por Período");
-				mnGrupoRelatorios.add(mnItemConsultasPorPerodo);
-				
-				JSeparator separator_1 = new JSeparator();
-				mnGrupoRelatorios.add(separator_1);
-				JMenuItem mnItemPacintesAtndidos = new JMenuItem("Pacientes Atendidos");
-				mnGrupoRelatorios.add(mnItemPacintesAtndidos);
-			
+		setJMenuBar(menuBar);			
 			JMenu mnGrupoSistema = new JMenu("Sistema");
 			menuBar.add(mnGrupoSistema);
 				JMenuItem mnItemLogout = new JMenuItem("Logout");
@@ -109,7 +73,7 @@ public class JanelaPrincipal extends JFrame {
 		AreaPrincipal.add(backgroudImg);
 		backgroudImg.setLayout(null);
 		
-		JLabel lblCabecario = new JLabel("NOME DO SISTEMA");
+		JLabel lblCabecario = new JLabel("Consultório Médico");
 		lblCabecario.setFont(new Font("DejaVu Sans", Font.BOLD, 16));
 		lblCabecario.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCabecario.setBounds(12, 12, 676, 51);
@@ -134,7 +98,7 @@ public class JanelaPrincipal extends JFrame {
 				backgroudImg.add(btnMedico);
 				btnMedico.setBounds(12, 95, 110, 100);
 				
-				JButton btnPaciente = new JButton("Paciênte");
+				JButton btnPaciente = new JButton("Paciente");
 				btnPaciente.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						FormPaciente formPaciente = new FormPaciente();
@@ -143,11 +107,7 @@ public class JanelaPrincipal extends JFrame {
 				});
 				backgroudImg.add(btnPaciente);
 				btnPaciente.setBounds(134, 95, 110, 100);
-				
-				JButton btnUsuario = new JButton("Usuário");
-				backgroudImg.add(btnUsuario);
-				btnUsuario.setBounds(256, 95, 110, 100);
-		
+						
 			JLabel lblAgenda = new JLabel("Agenda");
 			lblAgenda.setBounds(11, 207, 60, 17);
 			backgroudImg.add(lblAgenda);
@@ -160,5 +120,11 @@ public class JanelaPrincipal extends JFrame {
 				JButton btnAgenda = new JButton("Agenda");
 				btnAgenda.setBounds(12, 224, 110, 100);
 				backgroudImg.add(btnAgenda);
+				btnAgenda.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						FormConsultas formAgenda = new FormConsultas();
+						setVisible(false);
+					}
+				});
 	}
 }

@@ -11,3 +11,12 @@ Este software foi desenvolvido para facilitar a rotina de consultórios médicos
 
 ## ✔️ `Tecnologias utilizadas`
 - `Java 21`
+
+## `Iniciando Projeto`
+- Executar os comandos listados no arquivo "Lista de Comandos" dentro da pasta 1-banco_de_dados;
+- Alterar variáveis de conexão do banco no arquivo "Conexão.java";
+- Adicionar bibliotecas de conexão do banco (no eclipse)
+	- Clicar com botão direito na pasta em que está salvo o projeto > propriedades;
+	- Na janela que abrir clicar em Java Build Path > Selecionar ModulePath > no menu direito > Add External JARs;
+	- Acessar pasta Ferramentas (já está no projeto) > Selecionar arquivo json-20210307.jar;
+	- Adicionar novamente mais um External JARs > Abrir pasta MySQL Connector > Selecionar arquivo mysql-connector-j-9.3.0.jar; 

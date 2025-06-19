@@ -58,6 +58,19 @@ CREATE TABLE tb_paciente (
     complemento VARCHAR(255)                        -- Complemento do endereço (ex: apto, bloco, etc.)
 );
 
+
+-- Criação da tabela de consultas 
+CREATE TABLE tb_consultas (
+    id_consulta INT PRIMARY KEY AUTO_INCREMENT,
+    id_paciente INT,
+    id_medico INT,
+    data_consulta DATE,
+    status VARCHAR(100),
+    observacoes VARCHAR(255),
+    FOREIGN KEY (id_paciente) REFERENCES tb_paciente(id),
+    FOREIGN KEY (id_medico) REFERENCES tb_medico(id)
+);
+
 -- Criação da tabela "tb_usuario", que armazenará os dados de login dos usuários do sistema
 CREATE TABLE tb_usuario (
     id INT AUTO_INCREMENT PRIMARY KEY,                    -- ID do usuário, chave primária

@@ -9,6 +9,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -477,8 +479,15 @@ public class FormPaciente extends JFrame {
 						String pacSexoDB = "";
 						String pacNome = txtNome.getText();
 						String pacCpf = txtCpf.getText();
-						String pacRg = txtRg.getText();
-						String pacDataNasc = txtDataNasc.getText();
+						String pacRg = txtRg.getText();						
+						String valorDataNascPac = txtDataNasc.getText();
+						
+						DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+						DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+						
+						LocalDate date = LocalDate.parse(valorDataNascPac, inputFormatter); 
+						String pacDataNasc = date.format(outputFormatter);
+												
 						String pacSexo = cbSexo.getSelectedItem().toString();;
 						if(pacSexo.equalsIgnoreCase("Masculino")) {
 							pacSexoDB = "M";
@@ -524,10 +533,10 @@ public class FormPaciente extends JFrame {
 							cx.pst.setInt(16, idSelecionado);		
 							int sucesso = cx.pst.executeUpdate();				
 							if(sucesso == 1) {
-								JOptionPane.showMessageDialog(btnSalvar.getTopLevelAncestor(), "Paciênte editado com sucesso!");
+								JOptionPane.showMessageDialog(btnSalvar.getTopLevelAncestor(), "Paciente editado com sucesso!");
 								layoutDefault();
 							}else {
-								JOptionPane.showMessageDialog(btnSalvar.getTopLevelAncestor(),"Erro ao editado Paciênte!");
+								JOptionPane.showMessageDialog(btnSalvar.getTopLevelAncestor(),"Erro ao editado Paciente!");
 							}
 						}
 					}catch (SQLException ex) {
@@ -544,10 +553,10 @@ public class FormPaciente extends JFrame {
 						cx.pst.setInt(1, idSelecionado);
 						int sucesso = cx.pst.executeUpdate();
 						if(sucesso == 1) {
-							JOptionPane.showMessageDialog(btnExcluir.getTopLevelAncestor(), "Paciênte deletado com sucesso!");
+							JOptionPane.showMessageDialog(btnExcluir.getTopLevelAncestor(), "Paciente deletado com sucesso!");
 							layoutDefault();
 						}else {
-							JOptionPane.showMessageDialog(btnExcluir.getTopLevelAncestor(),"Erro ao deletar Paciênte!");
+							JOptionPane.showMessageDialog(btnExcluir.getTopLevelAncestor(),"Erro ao deletar Paciente!");
 						}
 						
 					} catch (SQLException ex) {
@@ -563,8 +572,15 @@ public class FormPaciente extends JFrame {
 						String pacSexoDB = "";
 						String pacNome = txtNome.getText();
 						String pacCpf = txtCpf.getText();
-						String pacRg = txtRg.getText();
-						String pacDataNasc = txtDataNasc.getText();
+						String pacRg = txtRg.getText();						
+						String valorDataNascPac = txtDataNasc.getText();
+						
+						DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+						DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+						
+						LocalDate date = LocalDate.parse(valorDataNascPac, inputFormatter); 
+						String pacDataNasc = date.format(outputFormatter);
+						
 						String pacSexo = cbSexo.getSelectedItem().toString();;
 						if(pacSexo.equalsIgnoreCase("Masculino")) {
 							pacSexoDB = "M";
@@ -609,10 +625,10 @@ public class FormPaciente extends JFrame {
 							cx.pst.setString(15, pacComplemento);
 							int sucesso = cx.pst.executeUpdate();				
 							if(sucesso == 1) {
-								JOptionPane.showMessageDialog(btnSalvar.getTopLevelAncestor(), "Paciênte adicionado com sucesso!");
+								JOptionPane.showMessageDialog(btnSalvar.getTopLevelAncestor(), "Paciente adicionado com sucesso!");
 								layoutDefault();
 							}else {
-								JOptionPane.showMessageDialog(btnSalvar.getTopLevelAncestor(),"Erro ao adicionar Paciênte!");
+								JOptionPane.showMessageDialog(btnSalvar.getTopLevelAncestor(),"Erro ao adicionar Paciente!");
 							}
 						}
 					}catch (SQLException ex) {

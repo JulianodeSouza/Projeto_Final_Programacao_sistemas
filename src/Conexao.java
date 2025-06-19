@@ -17,7 +17,7 @@ public class Conexao {
 		try {			
 			String addressDB = "jdbc:mysql://localhost:3306/db_consultorio";
 			String userDB = "root";
-			String passwordDB = "123";
+			String passwordDB = "senha";
 			Class.forName("com.mysql.cj.jdbc.Driver");//CONFIGURAÇÃO PARA DIZER QUE ESTAMOS UTILIZANDO UM BANCO MYSQL
 			con = DriverManager.getConnection(addressDB,userDB,passwordDB); //CONFIGURAÇÃO PARA ACESSAR O BANCO DE DADOS
 			
