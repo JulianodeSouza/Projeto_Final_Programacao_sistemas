@@ -341,7 +341,7 @@ public class FormConsultas extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int pID = idSelecionado;
-					String sql = "UPDATE tb_consultas SET status='Cancelada' WHERE id = ?;";
+					String sql = "delete FROM tb_consultas WHERE id = ?;";
 					cx.pst = cx.con.prepareStatement(sql);
 					cx.pst.setInt(1, pID);
 
@@ -483,9 +483,20 @@ public class FormConsultas extends JFrame {
 						cx.rs = cx.pst.executeQuery();
 						
 						if (cx.rs.next() == true) {
-							cbMedico.setSelectedItem(cx.rs.getString(1));
-							cbPaciente.setSelectedItem(cx.rs.getString(2));
-							txtDataConsulta.setText(cx.rs.getString(3));							
+							
+							String valorDataConsulta = cx.rs.getString(3);
+							
+							DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+							DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+							
+							LocalDate date = LocalDate.parse(valorDataConsulta, inputFormatter); 
+							String dataConsultaFormatada = date.format(outputFormatter);
+							
+							System.out.println(cx.rs.getString(1));
+							
+							cbPaciente.setSelectedItem(cx.rs.getString(1));
+							cbMedico.setSelectedItem(cx.rs.getString(2));							
+							txtDataConsulta.setText(dataConsultaFormatada);							
 							txtObservacoes.setText(cx.rs.getString(4));
 							
 							layoutSelecionarConsultaTable();
@@ -497,7 +508,7 @@ public class FormConsultas extends JFrame {
 			}
 		});
 		scrollPane.setViewportView(table);
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "ID", "Nome", "CRM", "Especialidade" }));
+		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "ID", "Paciente", "Médico", "Data Consulta" }));
 
 		JLabel lblNewLabel_1_1 = new JLabel("Consultas Agendadas");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
